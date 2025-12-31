@@ -30,7 +30,7 @@ cd Booking-Room-API
 composer install
 ```
 
-3. Setup Invironment:
+3. Setup Environment:
 
 ```
 Ubah .env.example -> .env
