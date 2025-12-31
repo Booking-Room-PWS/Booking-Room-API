@@ -62,10 +62,17 @@ php artisan key:generate (membuat 32 lebih random karakter key dan set value APP
 ```
 php artisan serve
 ```
-
-**Informasi Akun Uji Coba**
-- Admin: admin@example.com
-- User: user@example.com  
+> [!IMPORTANT]
+> **Informasi Akun Uji Coba**
+- Admin:
+  - name: Admin
+  - email: admin@example.com
+  - password: password
+- User:
+  - name: namabaru
+  - email: namabaru@example.com
+  - password: abc123
+  - password_confirmation: abc123
 
 ## Dokumentasi API
 - Postman Collection: Kosong untuk saat ini.
