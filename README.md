@@ -51,7 +51,13 @@ php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServicePro
 php artisan jwt:secret (mengisi JWT_SECRET di .env)
 ```
 
-6. Jalankan Local Development Server:
+6. Generate secure key:
+
+```
+php artisan key:generate (membuat 32 lebih random karakter key dan set value APP_KEY=(awalnya kosong) di file .env)
+```
+
+7. Jalankan Local Development Server:
 
 ```
 php artisan serve
