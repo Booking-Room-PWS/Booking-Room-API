@@ -21,7 +21,7 @@ XAMPP (8.2.12)
 
 ```
 git clone https://github.com/Booking-Room-PWS/Booking-Room.git
-cd Portofolio-Website
+cd Booking-Room-API
 ```
 
 2. Install dependency:
