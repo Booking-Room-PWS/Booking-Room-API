@@ -12,6 +12,7 @@ Pastikan Anda telah menginstal hal-hal berikut pada sistem Anda:
 ```
 Git (2.51.2 atau lebih baru)
 Composer (2.9.1 atau lebih baru)
+XAMPP (8.2.12)
 ```
 
 ## Cara Menjalankan Sistem
