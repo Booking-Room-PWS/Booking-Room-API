@@ -36,6 +36,29 @@ composer install
 Ubah .env.example -> .env
 Atur Koneksi DB & MYSQL (DB_DATABASE, dll jika diperlukan)
 ```
+> [!NOTE]
+> Klik dibawah ini untuk apa saja yang diubah pada .env
+<details>
+<summary>Klik disini!</summary>
+
+```
+DB_CONNECTION=sqlite
+# DB_HOST=127.0.0.1
+# DB_PORT=3306
+# DB_DATABASE=roombooking
+# DB_USERNAME=root
+# DB_PASSWORD=''
+
+Ubah menjadi seperti ini:
+DB_CONNECTION=mysql # ubah sqlite ke mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=roombooking # sesuaikan dengan database,
+DB_USERNAME=root
+DB_PASSWORD=''
+```
+
+</details>
 
 4. Migration:
 
