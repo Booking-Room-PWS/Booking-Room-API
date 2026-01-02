@@ -33,6 +33,7 @@ Route::middleware('auth:api')->group(function () {
     Route::middleware('is_admin')->group(function () {
         Route::post('rooms', [RoomController::class, 'store']);
         Route::put('rooms/{room}', [RoomController::class, 'update']);
+        Route::patch('rooms/{room}', [RoomController::class, 'patch']);
         Route::delete('rooms/{room}', [RoomController::class, 'destroy']);
     });
 
