@@ -31,6 +31,10 @@ class AuthController extends Controller
             'user' => $user,
             'access_token' => $token,
         ], 201);
+
+        if (!request->isMethod('post')) {
+            return response()->json(['message' => 'Method not allowed', 'data' => 'test'], 405);
+        }
     }
 
     public function login(Request $request)
