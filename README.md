@@ -118,6 +118,8 @@ php artisan serve
   - ApiFormatter.php
 - [x] routes
   - api.php
+- [x] bootstrap / konfigurasi (routing, middleware alias, exception handler dll)
+  - bootstrap/app.php (laravel 12+)
 - [x] controller + request class
   - AuthController.php
   - RoomController.php (refresh belum selesai)
