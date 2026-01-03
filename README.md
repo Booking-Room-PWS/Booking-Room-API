@@ -98,7 +98,8 @@ php artisan serve
   - password_confirmation: abc123
 
 ## Dokumentasi API
-- Postman Collection: Kosong untuk saat ini.
+- Dokumentasi API Saat ini: [Klik Disini!](docs/README.md)
+- Postman Collection (publish): Kosong untuk saat ini.
 
 ## TODO
 - [x] middleware
@@ -113,13 +114,13 @@ php artisan serve
   - Booking.php
   - Room.php
   - User.php
-- [] routes
+- [x] helpers
+  - ApiFormatter.php
+- [x] routes
   - api.php
-- [] controller + request class
-  - RoomController
-  - BookingController
-  - StoreRoomRequest
-  - UpdateRoomRequest
-  - StoreBookingRequest
+- [x] controller + request class
+  - AuthController.php
+  - RoomController.php (refresh belum selesai)
+  - BookingController.php (belum selesai)
 - [] Testing API + Endpoint
 - [] Postman Collection
