@@ -86,7 +86,7 @@ php artisan key:generate (membuat 32 lebih random karakter key dan set value APP
 php artisan serve
 ```
 > [!IMPORTANT]
-> **Informasi Akun Uji Coba**
+> Uji Coba Akun
 - Admin:
   - name: Admin
   - email: admin@example.com
@@ -121,8 +121,8 @@ php artisan serve
 - [x] bootstrap / konfigurasi (routing, middleware alias, exception handler dll)
   - bootstrap/app.php (laravel 12+)
 - [x] controller + request class
-  - AuthController.php
-  - RoomController.php (refresh belum selesai)
+  - AuthController.php (refresh belum selesai)
+  - RoomController.php
   - BookingController.php (belum selesai)
 - [] Testing API + Endpoint
 - [] Postman Collection
