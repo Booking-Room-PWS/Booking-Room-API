@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Tymon\JWTAuth\Facades\JWTAuth;
+use App\Helpers\ApiFormatter;
+use Tymon\JWTAuth\Exceptions\TokenExpiredException;
+use Tymon\JWTAuth\Exceptions\JWTException;
 
 class AuthController extends Controller
 {
@@ -50,20 +53,38 @@ class AuthController extends Controller
 
     public function me()
     {
+        if (!JWTAuth::getToken()) {
+            return ApiFormatter::createJson(401, 'A token is required');
+        }
+
         $user = JWTAuth::parseToken()->authenticate();
         return response()->json($user);
     }
 
     public function logout()
     {
+        if (!JWTAuth::getToken()) {
+            return ApiFormatter::createJson(401, 'A token is required');
+        }
+        
         JWTAuth::parseToken()->invalidate();
         return response()->json(['message' => 'Logged out']);
     }
 
     public function refresh()
     {
-        $token = JWTAuth::refresh();
-        return $this->respondWithToken($token);
+        if (!JWTAuth::getToken()) {
+            return ApiFormatter::createJson(401, 'A token is required');
+        }
+
+        try {
+            $newToken = JWTAuth::refresh();
+            return $this->respondWithToken($newToken);
+        } catch (TokenExpiredException $e) {
+            return ApiFormatter::createJson(401, 'Token refresh period has expired');
+        } catch (JWTException $e) {
+            return ApiFormatter::createJson(500, 'Could not refresh token');
+        }
     }
 
     protected function respondWithToken($token)
