@@ -5,6 +5,7 @@
 ## Deskripsi Singkat
 Booking Room API adalah REST API untuk mengelola data ruang/kamar dan transaksi booking (pengajuan, pembatalan, persetujuan admin) dengan autentikasi JWT agar akses endpoint aman.​
 
+testing ferdianstradlin
 ## Requirement
 
 Pastikan Anda telah menginstal hal-hal berikut pada sistem Anda:
