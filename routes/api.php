@@ -19,7 +19,7 @@ Route::prefix('auth')->group(function () {
 /*
 | Protected routes (require Bearer token)
 */
-Route::middleware('auth:api')->group(function () {
+Route::middleware('force_json')->group(function () {
     // Auth
     Route::get('auth/me', [AuthController::class, 'me']);
     Route::post('auth/logout', [AuthController::class, 'logout']);

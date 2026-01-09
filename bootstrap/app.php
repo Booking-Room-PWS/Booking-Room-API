@@ -20,7 +20,8 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([ //* Tambahkan ini
-            'is_admin' => \App\Http\Middleware\IsAdmin::class
+            'is_admin' => \App\Http\Middleware\IsAdmin::class,
+            'force_json' => \App\Http\Middleware\ForceJsonHeaders::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
@@ -52,7 +53,7 @@ return Application::configure(basePath: dirname(__DIR__))
         // Authentication Exception -> JSON 401
         $exceptions->renderable(function (AuthenticationException $e, $request) {
             if ($request->is('api/*') || $request->expectsJson()) {
-                return ApiFormatter::createJson(401, 'Unauthenticated');
+                return ApiFormatter::createJson(401, 'Unauthenticated: Token Required');
             }
         });
 
