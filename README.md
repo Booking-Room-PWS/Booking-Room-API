@@ -99,7 +99,7 @@ php artisan serve
 
 ## Dokumentasi API
 - Dokumentasi API Saat ini: [Klik Disini!](docs/README.md)
-- Postman Collection (publish): Kosong untuk saat ini.
+- Postman Collection (publish): https://documenter.getpostman.com/view/38706978/2sBXVeGY1u (Note/catatan: masih belum complete) 
 
 ## TODO
 - [x] middleware
