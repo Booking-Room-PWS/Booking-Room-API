@@ -4,23 +4,57 @@ namespace App\Http\Controllers;
 
 use App\Models\Room;
 use Illuminate\Http\Request;
-
 use Illuminate\Validation\ValidationException;
+use App\Helpers\ApiFormatter;
+use Tymon\JWTAuth\Facades\JWTAuth;
+use Tymon\JWTAuth\Exceptions\TokenExpiredException;
+use Tymon\JWTAuth\Exceptions\TokenInvalidException;
+use Tymon\JWTAuth\Exceptions\JWTException;
 
 class RoomController extends Controller
 {
+    protected function checkAuth()
+    {
+        if (! JWTAuth::getToken()) {
+            return ApiFormatter::createJson(401, 'A token is required');
+        }
+
+        try {
+            $user = JWTAuth::parseToken()->authenticate();
+            if (! $user) {
+                return ApiFormatter::createJson(404, 'User not found');
+            }
+            return null;
+        } catch (TokenExpiredException $e) {
+            return ApiFormatter::createJson(401, 'Token expired');
+        } catch (TokenInvalidException $e) {
+            return ApiFormatter::createJson(401, 'Token invalid');
+        } catch (JWTException $e) {
+            return ApiFormatter::createJson(401, 'Token error or absent');
+        }
+    }
+
     public function index()
     {
-        return Room::where('is_active', true)->paginate(10);
+        if ($resp = $this->checkAuth()) return $resp;
+
+        $rooms = Room::where('is_active', true)->paginate(10);
+        // ->toArray() returns same pagination structure as Laravel's JSON response
+        return ApiFormatter::createJson(200, 'OK', $rooms->toArray());
     }
 
     public function show(Room $room)
     {
-        return $room;
+        if ($resp = $this->checkAuth()) return $resp;
+
+        // return attributes only (same format as before)
+        return ApiFormatter::createJson(200, 'OK', $room->toArray());
     }
 
     public function store(Request $request)
     {
+        if ($resp = $this->checkAuth()) return $resp;
+
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'location' => 'required|string|max:255',
@@ -29,13 +63,15 @@ class RoomController extends Controller
         ]);
 
         $room = Room::create($data);
-        return response()->json($room, 201);
+
+        // return attributes only (not raw object)
+        return ApiFormatter::createJson(201, 'Room created', $room->toArray());
     }
 
-    //* Room Updete: PUT
     public function update(Request $request, Room $room)
     {
-        //* rules untuk full update (PUT)
+        if ($resp = $this->checkAuth()) return $resp;
+
         $rules = [
             'name' => 'required|string|max:255',
             'location' => 'required|string|max:255',
@@ -43,7 +79,6 @@ class RoomController extends Controller
             'is_active' => 'sometimes|boolean',
         ];
 
-        //* custom messages
         $messages = [
             'name.required' => 'Name is required.',
             'location.required' => 'Location is required.',
@@ -52,46 +87,48 @@ class RoomController extends Controller
             'capacity.min' => 'Capacity must be at least 1.',
         ];
 
-        if ($request->isMethod('put')) {
-            $data = $request->validate($rules, $messages);
-        } else {
-            if (empty($data)) {
-                throw ValidationException::withMessages([
-                    'data' => ['At least one of name, location, capacity, or is_active must be provided']
-                ]);
-            }
-        }
+        $data = $request->validate($rules, $messages);
 
         $room->update($data);
-        return response()->json($room->fresh());
-        // return response()->json($room);
+
+        return ApiFormatter::createJson(200, 'Room updated', $room->fresh()->toArray());
     }
 
-    //* Room update sebagian: PATCH
-    public function patch(Request $request, Room $room) {
+    public function patch(Request $request, Room $room)
+    {
+        if ($resp = $this->checkAuth()) return $resp;
+
         $rules = [
             'name' => 'sometimes|string|max:255',
             'location' => 'sometimes|string|max:255',
             'capacity' => 'sometimes|integer|min:1',
             'is_active' => 'sometimes|boolean',
         ];
-        
-        $data = $request->validate($rules);
+
+        $messages = [
+            'capacity.integer' => 'Capacity must be an integer.',
+            'capacity.min' => 'Capacity must be at least 1.',
+        ];
+
+        $data = $request->validate($rules, $messages);
 
         if (empty($data)) {
             throw ValidationException::withMessages([
-                'data' => 'At least one of name, location, capacity, or is_active must be provided.'
+                'data' => ['At least one of name, location, capacity, or is_active must be provided.']
             ]);
         }
 
         $room->update($data);
-        return response()->json($room->fresh());
-    }
 
+        return ApiFormatter::createJson(200, 'Room updated', $room->fresh()->toArray());
+    }
 
     public function destroy(Room $room)
     {
+        if ($resp = $this->checkAuth()) return $resp;
+
         $room->delete();
-        return response()->json(['message' => 'Room succesfully deleted']);
+
+        return ApiFormatter::createJson(200, 'Room successfully deleted', null);
     }
 }
