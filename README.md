@@ -3,7 +3,7 @@
 </div>
 
 ## Deskripsi Singkat
-RoomBooking API adalah REST API untuk mengelola data ruang/kamar dan transaksi booking (pengajuan, pembatalan, persetujuan admin) dengan autentikasi JWT agar akses endpoint aman.​
+Booking Room API adalah REST API untuk mengelola data ruang/kamar dan transaksi booking (pengajuan, pembatalan, persetujuan admin) dengan autentikasi JWT agar akses endpoint aman.​
 
 ## Requirement
 
