@@ -22,6 +22,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([ //* Tambahkan ini
             'is_admin' => \App\Http\Middleware\IsAdmin::class,
             'force_json' => \App\Http\Middleware\ForceJsonHeaders::class,
+            'log_api' => \App\Http\Middleware\LogAPI::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
