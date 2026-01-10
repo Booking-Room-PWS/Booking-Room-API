@@ -104,15 +104,19 @@ php artisan serve
 ## TODO
 - [x] middleware
   - IsAdmin.php
+  - ForceJsonHeaders.php
+  - LogAPI.php
 - [x] seeders
   - DatabaseSeeder.php (Admin dan User Biasa)
 - [x] migration
   - xxxx_xx_xx_xxxxx_create_rooms_table.php
   - xxxx_xx_xx_xxxxx_create_bookings_table.php
   - xxxx_xx_xx_xxxxx_add_is_admin_to_users_table.php
+  - xxxx_xx_xx_xxxxx_create_log_table.php
 - [x] models
   - Booking.php
   - Room.php
+  - LogModel.php
   - User.php
 - [x] helpers
   - ApiFormatter.php
