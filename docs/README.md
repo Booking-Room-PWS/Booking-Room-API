@@ -7,7 +7,17 @@
 
 Method: POST <br> URL: api/auth/register <br> Body (form data):
 
-Response sukses (201):
+```
+{
+    "name": "rudi"
+    "email": "rudi@example.com"
+    "password": "123456"
+    "password_confirmation": "123456"
+}
+```
+
+
+Response sukses:
 ```
 {
   "user": {
@@ -23,14 +33,14 @@ Response sukses (201):
 
 2) Login
 
-Method: POST
-URL: api/auth/login
-Body (form data):
+Method: POST <br> URL: api/auth/login <br> Body (form data):
 
+```
 {
-    "name": "namauser"
+    "name": "rudi"
     "email": "emailuser@example.com   
 }
+```
 
 Response:
 ```
@@ -55,9 +65,7 @@ Contoh login admin:
 
 3) me (cek user)
 
-Method: POST
-URL: api/auth/me
-Headers: Authorization (bearer token)
+Method: POST <br> URL: api/auth/me <br> Headers: Authorization (bearer token)
 Response:
 ```
 {
@@ -73,9 +81,7 @@ Response:
 
 4) Logout
 
-Method: POST
-URL: {{base_url}}/auth/logout
-Headers: Authorization (bearer token)
+Method: POST <br> URL: {{base_url}}/auth/logout <br> Headers: Authorization (bearer token)
 Response:
 
 ```
@@ -84,11 +90,9 @@ Response:
 }
 ```
 
-5) Refresh token (Belum selesai)
+5) Refresh token
 
-Method: POST
-URL: {{base_url}}/auth/refresh
-Headers: Authorization
+Method: POST <br> URL: api/auth/refresh <br> Headers: Authorization (bearer token)
 Response:
 
 ```
@@ -98,9 +102,7 @@ Response:
 ### Room
 6) List rooms
 
-Method: GET
-URL: api/rooms
-Headers: Authorization (bearer token)
+Method: GET <br> URL: api/rooms <br> Headers: Authorization (bearer token)
 Response (paging):
 
 ```
@@ -188,9 +190,7 @@ Response (paging):
 
 7) Show room (by id)
 
-Method: GET
-URL: api/rooms/1
-Headers: Authorization (bearer token)
+Method: GET <br> URL: api/rooms/1 <br> Headers: Authorization (bearer token)
 Response:
 
 ```
@@ -201,10 +201,7 @@ Response:
 
 8) Create room (admin only)
 
-Method: POST
-URL: api/rooms
-Headers: Authorization (bearer token)
-Body (form data):
+Method: POST <br> URL: api/rooms <br> Headers: Authorization (bearer token) <br> Body (form data):
 
 ```
 {
@@ -230,10 +227,7 @@ Status: 403 Forbidden
 
 9) Update room (admin only)
 
-Method: PUT
-URL: api/rooms/3 (id room)
-Headers: Authorization (bearer token)
-Body (x-www-form-urlencoded):
+Method: PUT <br> URL: api/rooms/3 <br> Headers: Authorization (bearer token) <br> Body (x-www-form-urlencoded):
 
 ```
 {
@@ -244,7 +238,6 @@ Body (x-www-form-urlencoded):
 ```
 
 Response:
-
 ```
 {
     "id": 5,
@@ -259,10 +252,7 @@ Response:
 
 10) Patch room (admin only)
 
-Method: PATCH
-URL: api/rooms/1 (id room)
-Headers: Authorization (Bearer Token)
-Body (x-www-form-urlencoded) contoh:
+Method: PATCH <br> URL: api/rooms/1 <br> Headers: Authorization (Bearer Token) <br> Body (x-www-form-urlencoded) <br> contoh:
 
 ```
 { "capacity": 12 }
@@ -270,9 +260,7 @@ Body (x-www-form-urlencoded) contoh:
 
 11) Delete room (admin only)
 
-Method: DELETE
-URL: api/rooms/1
-Headers: Authorization (bearer token)
+Method: DELETE <br> URL: api/rooms/1 <br> Headers: Authorization (bearer token)
 Response:
 
 ```
