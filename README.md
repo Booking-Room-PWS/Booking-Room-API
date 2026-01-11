@@ -87,19 +87,23 @@ php artisan serve
 ```
 > [!IMPORTANT]
 > Uji Coba Akun
-- Admin:
+- Admin (login. Sudah ada di [DatabaseSeeder.php](database/seeders/DatabaseSeeder.php), tinggal di gunakan saja):
   - name: Admin
   - email: admin@example.com
   - password: password
-- User:
+- User (login. Sudah ada di [DatabaseSeeder.php](database/seeders/DatabaseSeeder.php), tinggal di gunakan saja):
+  - name: User Test
+  - email: user@example.com
+  - password: password
+- User (Register):
   - name: namabaru
-  - email: namabaru@example.com
-  - password: abc123
-  - password_confirmation: abc123
+  - email: namabaru@gmail.com
+  - password: ilo4J82
+  - password_confirmation: ilo4J82
 
 ## Dokumentasi API
 - Dokumentasi API Saat ini: [Klik Disini!](docs/README.md)
-- Postman Collection (publish): https://documenter.getpostman.com/view/38706978/2sBXVeGY1u (Note/catatan: masih belum complete) 
+- Postman Collection (publish): https://documenter.getpostman.com/view/38706978/2sBXVeGY1u
 
 ## TODO
 - [x] middleware
