@@ -5,9 +5,7 @@
 ### AUTH
 1) Register
 
-Method: POST
-URL: api/auth/register
-Body (form data):
+Method: POST <br> URL: api/auth/register <br> Body (form data):
 
 Response sukses (201):
 ```
