@@ -128,9 +128,9 @@ php artisan serve
   - api.php
 - [x] bootstrap / konfigurasi (routing, middleware alias, exception handler dll)
   - bootstrap/app.php (laravel 12+)
-- [x] controller + request class
-  - AuthController.php (refresh belum selesai)
+- [x] controller
+  - AuthController.php
   - RoomController.php
-  - BookingController.php (belum selesai)
+  - BookingController.php
 - [] Testing API + Endpoint
 - [] Postman Collection
