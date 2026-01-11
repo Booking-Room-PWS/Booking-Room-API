@@ -267,71 +267,164 @@ Response:
 { "message": "Room succesfully deleted" }
 ```
 
-### Booking (Belum selesai)
+### Booking
 11) List bookings
 
-Method: GET
-URL: {{base_url}}/bookings
-Headers: Authorization
-Behavior: jika admin lihat semua; jika user lihat booking miliknya.
+Method: GET <br> URL: api/bookings <br> Headers: Authorization (bearer token)
 Response (paging) contoh:
 
+```
 {
-  "data": [
-    { "id":1, "room_id":1, "user_id":2, "start_at":"2025-12-30 09:00:00", "end_at":"2025-12-30 10:00:00", "status":"pending", ... },
-    ...
-  ]
+    "current_page": 1,
+    "data": [],
+    "first_page_url": "http://127.0.0.1:8000/api/bookings?page=1",
+    "from": null,
+    "last_page": 1,
+    "last_page_url": "http://127.0.0.1:8000/api/bookings?page=1",
+    "links": [
+        {
+        "url": null,
+        "label": "&laquo; Previous",
+        "page": null,
+        "active": false
+        },
+        {
+        "url": "http://127.0.0.1:8000/api/bookings?page=1",
+        "label": "1",
+        "page": 1,
+        "active": true
+        },
+        {
+        "url": null,
+        "label": "Next &raquo;",
+        "page": null,
+        "active": false
+        }
+    ],
+    "next_page_url": null,
+    "path": "http://127.0.0.1:8000/api/bookings",
+    "per_page": 15,
+    "prev_page_url": null,
+    "to": null,
+    "total": 0
 }
+```
 
 12) Show booking
 
-Method: GET
-URL: {{base_url}}/bookings/1
-Headers: Authorization
+Method: GET <br> URL: api/bookings/1 <br> Headers: Authorization (bearer token)
 Response:
 
-{ "id":1, "room":{...}, "user":{...}, "start_at":"...", "end_at":"...", "status":"pending" }
+```
+{
+    "id": 1,
+    "room_id": 1,
+    "user_id": 1,
+    "start_at": "2026-01-11T15:20:00.000000Z",
+    "end_at": "2026-01-30T15:20:00.000000Z",
+    "purpose": "Presentasi UAS",
+    "status": "pending",
+    "created_at": "2026-01-11T07:22:49.000000Z",
+    "updated_at": "2026-01-11T07:22:49.000000Z",
+    "room": {
+        "id": 1,
+        "name": "Ruang Meeting A",
+        "location": "Lantai 1",
+        "capacity": 10,
+        "is_active": true,
+        "created_at": "2026-01-10T06:18:59.000000Z",
+        "updated_at": "2026-01-10T06:18:59.000000Z"
+    },
+    "user": {
+        "id": 1,
+        "name": "Admin",
+        "email": "admin@example.com",
+        "email_verified_at": null,
+        "is_admin": true,
+        "created_at": "2026-01-10T06:18:59.000000Z",
+        "updated_at": "2026-01-10T06:18:59.000000Z"
+    }
+}
+```
 
 13) Create booking (user)
 
-Method: POST
-URL: {{base_url}}/bookings
-Headers: Authorization + Content-Type
-Body:
-
+Method: POST <br> URL: api/bookings <br> Headers: Authorization (bearer token) <br> Body (form data):
+```
 {
   "room_id": 1,
-  "start_at": "2025-12-30 09:00:00",
-  "end_at": "2025-12-30 10:00:00",
+  "start_at": "2026-01-11 15:20:00",
+  "end_at": "2026-01-30 15:20:00",
   "purpose": "Presentasi UAS"
 }
+```
 
+Response sukses: status booking pending (default pending).
 
-Response sukses (201): booking object dengan status pending.
-Jika waktu bentrok → response 422:
-
-{ "errors": { "time": ["Waktu booking bentrok"] } }
-
-
-Format tanggal: gunakan YYYY-MM-DD HH:MM:SS sesuai timezone app.
+```
+{
+    "room_id": "1",
+    "user_id": 1,
+    "start_at": "2026-01-11T15:20:00.000000Z",
+    "end_at": "2026-01-30T15:20:00.000000Z",
+    "purpose": "Presentasi UAS",
+    "status": "pending",
+    "updated_at": "2026-01-11T07:22:49.000000Z",
+    "created_at": "2026-01-11T07:22:49.000000Z",
+    "id": 1
+}
+```
 
 14) Cancel booking (user)
 
-Method: PATCH
-URL: {{base_url}}/bookings/1/cancel
-Headers: Authorization
-Response: booking object dengan status: "cancelled".
+Method: PATCH <br> URL: api/bookings/1/cancel <br> Headers: Authorization (bearer token) <br>
+Response: booking status: "cancelled":
+```
+{
+    id": 1,
+    "room_id": 1,
+    "user_id": 1,
+    "start_at": "2026-01-11T15:20:00.000000Z",
+    "end_at": "2026-01-30T15:20:00.000000Z",
+    "purpose": "Presentasi UAS",
+    "status": "cancelled",
+    "created_at": "2026-01-11T07:22:49.000000Z",
+    "updated_at": "2026-01-11T07:31:52.000000Z"
+}
+```
 
 15) Approve booking (admin)
 
-Method: PATCH
-URL: {{base_url}}/bookings/1/approve
-Headers: Authorization
-Response: booking object dengan status: "approved".
+Method: PATCH <br> URL: api/bookings/1/approve <br> Headers: Authorization (bearer token)
+Response: booking status: "approved".
+```
+{
+    id": 1,
+    "room_id": 1,
+    "user_id": 1,
+    "start_at": "2026-01-11T15:20:00.000000Z",
+    "end_at": "2026-01-30T15:20:00.000000Z",
+    "purpose": "Presentasi UAS",
+    "status": "approved",
+    "created_at": "2026-01-11T07:22:49.000000Z",
+    "updated_at": "2026-01-11T07:31:52.000000Z"
+}
+```
 
 16) Reject booking (admin)
 
-Method: PATCH
-URL: {{base_url}}/bookings/1/reject
-Headers: Authorization
-Response: booking object dengan status: "rejected".
+Method: PATCH <br> URL: api/bookings/1/reject <br> Headers: Authorization (bearer token)
+Response: booking status: "rejected":
+```
+{
+    id": 1,
+    "room_id": 1,
+    "user_id": 1,
+    "start_at": "2026-01-11T15:20:00.000000Z",
+    "end_at": "2026-01-30T15:20:00.000000Z",
+    "purpose": "Presentasi UAS",
+    "status": "rejected",
+    "created_at": "2026-01-11T07:22:49.000000Z",
+    "updated_at": "2026-01-11T07:31:52.000000Z"
+}
+```
