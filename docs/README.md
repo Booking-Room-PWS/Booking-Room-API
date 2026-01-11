@@ -102,8 +102,7 @@ Response:
 ## Room
 6) List rooms
 
-Method: GET <br> URL: api/rooms <br> Headers: Authorization (bearer token)
-Response (paging):
+Method: GET <br> URL: api/rooms <br> Headers: Authorization (bearer token) <br> Response:
 
 ```
 {
@@ -190,8 +189,7 @@ Response (paging):
 
 7) Show room (by id)
 
-Method: GET <br> URL: api/rooms/1 <br> Headers: Authorization (bearer token)
-Response:
+Method: GET <br> URL: api/rooms/1 <br> Headers: Authorization (bearer token) <br> Response:
 
 ```
 {
@@ -260,8 +258,7 @@ Method: PATCH <br> URL: api/rooms/1 <br> Headers: Authorization (Bearer Token) <
 
 11) Delete room (admin only)
 
-Method: DELETE <br> URL: api/rooms/1 <br> Headers: Authorization (bearer token)
-Response:
+Method: DELETE <br> URL: api/rooms/1 <br> Headers: Authorization (bearer token) <br> Response:
 
 ```
 { "message": "Room succesfully deleted" }
@@ -270,8 +267,7 @@ Response:
 ## Booking
 11) List bookings
 
-Method: GET <br> URL: api/bookings <br> Headers: Authorization (bearer token)
-Response (paging) contoh:
+Method: GET <br> URL: api/bookings <br> Headers: Authorization (bearer token) <br> Response:
 
 ```
 {
@@ -312,8 +308,7 @@ Response (paging) contoh:
 
 12) Show booking
 
-Method: GET <br> URL: api/bookings/1 <br> Headers: Authorization (bearer token)
-Response:
+Method: GET <br> URL: api/bookings/1 <br> Headers: Authorization (bearer token) <br> Response:
 
 ```
 {
