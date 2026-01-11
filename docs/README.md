@@ -2,7 +2,7 @@
 <h2>Dokumentasi Booking Room API</h2>
 </div>
 
-### AUTH
+## AUTH
 1) Register
 
 Method: POST <br> URL: api/auth/register <br> Body (form data):
@@ -99,7 +99,7 @@ Response:
 { "access_token": "newtoken...", "token_type":"bearer", "expires_in":3600 }
 ```
 
-### Room
+## Room
 6) List rooms
 
 Method: GET <br> URL: api/rooms <br> Headers: Authorization (bearer token)
@@ -267,7 +267,7 @@ Response:
 { "message": "Room succesfully deleted" }
 ```
 
-### Booking
+## Booking
 11) List bookings
 
 Method: GET <br> URL: api/bookings <br> Headers: Authorization (bearer token)
